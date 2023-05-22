@@ -26,36 +26,18 @@ jobs:
         name: swiftpackage
         path: shared/swiftpackage
         retention-days: 1
+    - name: Setup Jfrog CLI
+      uses: jfrog/setup-jfrog-cli@v2
+      env:
+        JF_URL: https://ltlocaldev.jfrog.io
+        JF_USER: scanfin@listen-too.com
+        JF_PASSWORD: 123Jfrog!
         
-  push:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Download directory with swift package
-        uses: actions/download-artifact@v2
-        with:
-          name: swiftpackage
-          path: swiftpackage
-      - name: Display structure of downloaded files
-        run: ls -R
-      - name: Access tag name of current workflow
-        run: echo "TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
-      - name: Create release branch on package repo
-        uses: GuillaumeFalourd/create-other-repo-branch-action@v1
-        with:
-          repository_owner: piotrprus
-          repository_name: kmm-swift-packages
-          new_branch_name: ${{ env.TAG }}
-          access_token: ${{ secrets.API_TOKEN_GITHUB}}
-      - name: Push directory to another repository
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source-directory: 'swiftpackage'
-          destination-github-username: 'piotrprus'
-          destination-repository-name: 'kmm-swift-packages'
-          user-email: prus.piotr@gmail.com
-          target-branch: ${{ env.TAG }}
+    - name: Jfrog CLI commands
+      run: 
+        jf rt ping
+        jf rt bce
+        jf rt bag
+        jf rt bp
+        
+  
