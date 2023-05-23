@@ -1,3 +1,9 @@
+repositories {
+    mavenCentral()
+    google()
+    gradlePluginPortal()
+}
+
 plugins {
     kotlin("multiplatform")
     id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
