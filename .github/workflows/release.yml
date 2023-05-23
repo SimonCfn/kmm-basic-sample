@@ -23,7 +23,7 @@ jobs:
         path: ./build.gradle.kts
     - name: Build XCF Framework
       id: buildPackage
-      run: ./gradlew createXCFramework
+      run: ./gradlew createSwiftPackage
     #- name: Upload Swift Package directory
      # uses: actions/upload-artifact@v2
       #with:
