@@ -26,6 +26,7 @@ multiplatformSwiftPackage {
 
 kotlin {
     android {
+        publishAllLibraryVariants()
     }
 
     multiplatformSwiftPackage {
