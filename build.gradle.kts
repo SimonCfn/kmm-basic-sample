@@ -6,7 +6,6 @@ repositories {
     gradlePluginPortal()
 }
 
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     id("maven-publish")
     kotlin("plugin.serialization") version "1.8.10"
@@ -15,14 +14,15 @@ plugins {
 }
 
 multiplatformSwiftPackage {
-    packageName("MyCardKmm")
-    swiftToolsVersion("5.6")
-    targetPlatforms {
-        iOS { v("14") }
+        swiftToolsVersion("5.4")
+        packageName("MyCardKmm")
+        zipFileName("MyCardKmm")
+        outputDirectory(File(projectDir, "/"))
+        distributionMode { local() }
+        targetPlatforms {
+            iOS { v("14") }
+        }
     }
-    outputDirectory(File(projectDir, "/"))
-    zipFileName("MyCardKmm_iOS")
-}
 
 kotlin {
     android {
