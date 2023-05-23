@@ -7,16 +7,19 @@ repositories {
 }
 
 plugins {
-    java
-    kotlin("multiplatform")
-    id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
+    alias(libs.plugins.multiplatform)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.multiplatform.spm)
 }
 
 kotlin {
     multiplatformSwiftPackage {
-    swiftToolsVersion("5.3")
+        packageName("MyCardKmm")
+        swiftToolsVersion("5.6")
         targetPlatforms {
-          iOS { v("13") }
+            iOS { v("14") }
         }
+        outputDirectory(File(projectDir, "/"))
+        zipFileName("MyCardKmm_iOS")
     }
 }
