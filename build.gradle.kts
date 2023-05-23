@@ -10,6 +10,8 @@ plugins {
 }
 
 kotlin {
+    android()
+    
     multiplatformSwiftPackage {
         packageName("MyCardKmm")
         swiftToolsVersion("5.6")
