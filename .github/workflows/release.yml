@@ -23,10 +23,7 @@ jobs:
         path: ./build.gradle.kts
     - name: Build XCF Framework
       id: buildPackage
-      run: ./gradlew createSwiftPackage
-      env:
-        JAVA_HOME: $(JAVA_HOME_11_X64)
-        PATH: $(JAVA_HOME_11_X64)/bin:$(PATH)  
+      run: ./gradlew createSwiftPackage 
     
     #- name: Setup Jfrog CLI
      # uses: jfrog/setup-jfrog-cli@v2
