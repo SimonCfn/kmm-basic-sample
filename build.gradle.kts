@@ -20,7 +20,7 @@ kotlin {
         swiftToolsVersion("5.4")
         packageName("MyCardKmm")
         zipFileName("MyCardKmm")
-        outputDirectory(File(projectDir, "/"))
+        outputDirectory(File(rootDir, "/"))
         distributionMode { local() }
         targetPlatforms {
             iOS { v("14") }
