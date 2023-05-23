@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
-
 repositories {
     mavenCentral()
     google()
@@ -12,7 +10,7 @@ plugins {
 }
 
 kotlin {
-    android()
+    ios()
     
     multiplatformSwiftPackage {
         packageName("MyCardKmm")
