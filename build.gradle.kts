@@ -7,9 +7,7 @@ repositories {
 }
 
 plugins {
-    alias(libs.plugins.multiplatform)
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.multiplatform.spm)
+    id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 
 kotlin {
