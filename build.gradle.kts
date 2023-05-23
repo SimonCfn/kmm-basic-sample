@@ -1,5 +1,8 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
+
+
+
 repositories {
     mavenCentral()
     google()
@@ -9,19 +12,14 @@ repositories {
 plugins {
     java
     kotlin("multiplatform")
-    id("com.github.pagr0m.kotlin.native.spm")
+    id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 
 kotlin {
-    iosArm64 {
-        binaries {
-            framework {
-                baseName = "KlibIOS"
-            }
+    multiplatformSwiftPackage {
+    swiftToolsVersion("5.3")
+        targetPlatforms {
+          iOS { v("13") }
         }
-    }
-
-    spm {
-        ios("14") { }
     }
 }
