@@ -10,9 +10,8 @@ repositories {
 plugins {
     id("maven-publish")
     kotlin("plugin.serialization") version "1.8.10"
-    alias(libs.plugins.multiplatform)
-    alias(libs.plugins.multiplatform.spm)
-    alias(libs.plugins.detekt)
+    id("org.jetbrains.kotlin.multiplatform") version "1.9.0-Beta"
+    id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 
 multiplatformSwiftPackage {
