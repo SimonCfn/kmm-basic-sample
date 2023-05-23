@@ -13,7 +13,10 @@ plugins {
     id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 
-multiplatformSwiftPackage {
+
+
+kotlin {
+    multiplatformSwiftPackage {
         swiftToolsVersion("5.4")
         packageName("MyCardKmm")
         zipFileName("MyCardKmm")
@@ -22,21 +25,6 @@ multiplatformSwiftPackage {
         targetPlatforms {
             iOS { v("14") }
         }
-    }
-
-kotlin {
-    android {
-        publishAllLibraryVariants()
-    }
-
-    multiplatformSwiftPackage {
-        packageName("MyCardKmm")
-        swiftToolsVersion("5.6")
-        targetPlatforms {
-            iOS { v("14") }
-        }
-        outputDirectory(File(projectDir, "/"))
-        zipFileName("MyCardKmm_iOS")
     }
 
     val xcf = XCFramework()
