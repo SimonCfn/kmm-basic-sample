@@ -17,6 +17,10 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 17
+    - name: "Read file contents"
+      uses: andstor/file-reader-action@v1
+      with:
+        path: ./build.gradle.kts
     - name: Build XCF Framework
       id: buildPackage
       run: ./gradlew createSwiftPackage
