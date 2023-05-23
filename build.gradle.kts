@@ -5,7 +5,7 @@ repositories {
 }
 
 plugins {
-    kotlin("multiplatform")
+    id("org.jetbrains.kotlin.multiplatform") version "1.9.0-Beta"
     id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
 }
 
