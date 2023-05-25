@@ -2,20 +2,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "MyCardKmm",
+    name: "KmmSample",
     platforms: [
         .iOS(.v14)
     ],
     products: [
         .library(
-            name: "MyCardKmm",
-            targets: ["MyCardKmm"]
+            name: "KmmSample",
+            targets: ["KmmSample"]
         ),
     ],
     targets: [
         .binaryTarget(
-            name: "MyCardKmm",
-            path: "./build/XCFrameworks/release/MyCardKmm.xcframework"
+            name: "KmmSample",
+            path: "./build/XCFrameworks/release/KmmSample.xcframework"
         ),
     ]
 )
