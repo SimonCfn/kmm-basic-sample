@@ -34,9 +34,6 @@ jobs:
         
     #- name: Jfrog CLI commands
      # run: 
-      #  jf rt ping
-       # jf rt bce
-        #jf rt bag
-        #jf rt bp
+      #  jf rt u ${PathFilesToUpload} ${JfReposotory}
         
   
