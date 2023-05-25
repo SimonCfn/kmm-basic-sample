@@ -4,6 +4,4 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-rootProject.name = "MyCardKmm"
-
-include(":shared")
+rootProject.name = "KmmSample"
