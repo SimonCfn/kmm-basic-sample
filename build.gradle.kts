@@ -10,18 +10,22 @@ plugins {
     id("maven-publish")
     kotlin("plugin.serialization") version "1.8.10"
     id("org.jetbrains.kotlin.multiplatform") version "1.9.0-Beta"
-    id("com.chromaticnoise.multiplatform-swiftpackage") version "2.0.3"
+    id("co.touchlab.faktory.kmmbridge") version "0.3.7"
+}
+
+kmmbridge {
+    mavenPublishArtifacts()
+    spm()
+    frameworkName.set("MyCardKmm")
 }
 
 kotlin {
-    multiplatformSwiftPackage {
-        swiftToolsVersion("5.4")
-        packageName("MyCardKmm")
-        zipFileName("MyCardKmm")
-        outputDirectory(File(rootDir, "/"))
-        distributionMode { local() }
-        targetPlatforms {
-            iOS { v("14") }
+    val ios = listOf(iosX64(), iosArm64(), iosSimulatorArm64())
+    configure(ios) {
+        binaries {
+            framework {
+                baseName = "KmmSample"
+            }
         }
     }
 }
