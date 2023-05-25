@@ -26,15 +26,5 @@ kotlin {
             iOS { v("14") }
         }
     }
-
-    val xcf = XCFramework()
-    listOf(
-        iosX64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "MyCardKmm"
-            xcf.add(this)
-        }
-    }
 }
 
