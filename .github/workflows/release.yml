@@ -23,11 +23,11 @@ jobs:
         path: ./build.gradle.kts
     - uses: actions/checkout@v2
     - name: call builder yaml
-      uses: ./.github/workflows/action-build
+      uses: ./.github/actions/build-spm
       with:
         jvmVersion: 17
         runs-on: macos-latest
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
       
     #- name: Setup Jfrog CLI
      # uses: jfrog/setup-jfrog-cli@v2
