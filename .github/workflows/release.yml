@@ -36,7 +36,7 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.konan
-          key: macos-latest-v4-${{ hashFiles('*.gradle.kts') }}
+          key: ${{ runner.os }}-v4-${{ hashFiles('*.gradle.kts') }}
 
       - name: Build Main
         run: ./gradlew kmmBridgePublish -PENABLE_PUBLISHING=true -PGITHUB_PUBLISH_TOKEN=${{ secrets.GITHUB_TOKEN }} -PGITHUB_REPO=SimonCfn/kmm-basic-sample  --no-daemon --stacktrace
