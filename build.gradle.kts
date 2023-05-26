@@ -24,9 +24,6 @@ kmmbridge {
 }
 
 kotlin {
-    android {
-        publishAllLibraryVariants()
-    }
     val ios = listOf(iosX64(), iosArm64(), iosSimulatorArm64())
     configure(ios) {
         binaries {
