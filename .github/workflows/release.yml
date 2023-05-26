@@ -27,6 +27,8 @@ jobs:
       with:
         jvmVersion: 17
         runs-on: macos-latest
+        secrets: inherit
+      
     #- name: Setup Jfrog CLI
      # uses: jfrog/setup-jfrog-cli@v2
       #env:
