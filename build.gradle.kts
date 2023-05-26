@@ -13,20 +13,3 @@ plugins {
     id("co.touchlab.faktory.kmmbridge") version "0.3.7"
 }
 
-kmmbridge {
-    mavenPublishArtifacts()
-    spm()
-    frameworkName.set("KmmSample")
-}
-
-kotlin {
-    val ios = listOf(iosX64(), iosArm64(), iosSimulatorArm64())
-    configure(ios) {
-        binaries {
-            framework {
-                baseName = "KmmSample"
-            }
-        }
-    }
-}
-
