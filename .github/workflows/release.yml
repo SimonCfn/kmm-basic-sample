@@ -27,7 +27,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: call builder yaml
-      uses: ./.github/workflows/
+      uses: ./.github/workflows/faktorybuild.yml
       with:
         jvmVersion: 17
         runs-on: macos-latest
