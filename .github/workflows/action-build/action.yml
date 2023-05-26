@@ -55,7 +55,7 @@ jobs:
         with:
           machine: 'maven.pkg.github.com'
           username: 'cirunner'
-          password: ${{ secrets.API_TOKEN_GITHUB }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/setup-java@v2
         with:
@@ -71,7 +71,7 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.konan
-          key: ${{ runner.os }}-v4-${{ hashFiles('*.gradle.kts') }}
+          key: macos-latest-v4-${{ hashFiles('*.gradle.kts') }}
 
       - name: Build Main
         run: ./gradlew kmm-basic-sample -PENABLE_PUBLISHING=true -PGITHUB_PUBLISH_TOKEN=${{ secrets.API_TOKEN_GITHUB }} -PGITHUB_REPO=kmm-basic-sample --no-daemon --stacktrace
