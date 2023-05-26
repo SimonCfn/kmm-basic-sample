@@ -15,7 +15,14 @@ kotlin {
             baseName = "shared"
         }
     }
-
+    
+kmmbridge {
+    mavenPublishArtifacts()
+    githubReleaseVersions()
+    spm()
+    cocoapods("git@github.com:touchlab/PublicPodspecs.git")
+    versionPrefix.set("0.8")
+}
 
 android {
     compileSdk = 31
