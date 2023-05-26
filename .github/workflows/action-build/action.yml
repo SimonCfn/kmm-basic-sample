@@ -39,34 +39,28 @@ on:
         required: false
 
 env:
-  PODSPEC_SSH_KEY_EXISTS: ${{ secrets.PODSPEC_SSH_KEY != ''}}
+  PODSPEC_SSH_KEY_EXISTS: false
   MODULE: ${{ inputs.module != '' && format('{0}:',inputs.module) || '' }}
 
 
 jobs:
   kmmbridgepublish:
-    concurrency: "kmmbridgepublish-${{ github.repository }}"
+    concurrency: "kmmbridgepublish-kmmSample"
     runs-on: ${{ inputs.runsOn }}
     steps:
       - name: Checkout the repo
         uses: actions/checkout@v3
 
-      - name: Apply SSH Key
-        if: ${{ env.PODSPEC_SSH_KEY_EXISTS == 'true' }}
-        uses: webfactory/ssh-agent@v0.5.4
-        with:
-          ssh-private-key: ${{ secrets.PODSPEC_SSH_KEY }}
-
       - uses: extractions/netrc@v1
         with:
           machine: ${{ inputs.netrcMachine }}
-          username: ${{ secrets.netrcUsername != '' && secrets.netrcUsername || 'cirunner' }}
-          password: ${{ secrets.netrcPassword != '' && secrets.netrcPassword || secrets.GITHUB_TOKEN  }}
+          username: 'cirunner'
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/setup-java@v2
         with:
           distribution: "adopt"
-          java-version: ${{ inputs.jvmVersion }}
+          java-version: 17
 
       - name: Validate Gradle Wrapper
         uses: gradle/wrapper-validation-action@v1
