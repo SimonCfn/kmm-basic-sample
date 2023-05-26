@@ -20,7 +20,7 @@ plugins {
 kmmbridge {
     mavenPublishArtifacts()
     spm()
-    frameworkName.set("MyCardKmm")
+    frameworkName.set("KmmSample")
 }
 
 kotlin {
