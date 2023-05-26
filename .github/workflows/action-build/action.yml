@@ -55,7 +55,7 @@ jobs:
         with:
           machine: ${{ inputs.netrcMachine }}
           username: 'cirunner'
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.API_TOKEN_GITHUB }}
 
       - uses: actions/setup-java@v2
         with:
