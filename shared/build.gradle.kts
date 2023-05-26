@@ -5,7 +5,8 @@ plugins {
 
 kotlin {
     android()
-
+    ios()
+    
     listOf(
         iosX64(),
         iosArm64(),
@@ -20,7 +21,6 @@ kmmbridge {
     mavenPublishArtifacts()
     githubReleaseVersions()
     spm()
-    cocoapods("git@github.com:touchlab/PublicPodspecs.git")
     versionPrefix.set("0.8")
 }
 
