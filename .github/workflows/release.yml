@@ -21,10 +21,6 @@ jobs:
       uses: andstor/file-reader-action@v1
       with:
         path: ./build.gradle.kts
-        
-  call-kmmbridge-publish:
-    runs-on: macos-latest
-    steps:
     - uses: actions/checkout@v2
     - name: call builder yaml
       uses: ./.github/workflows/faktorybuild.yml
