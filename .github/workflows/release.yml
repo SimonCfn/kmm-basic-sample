@@ -23,6 +23,7 @@ jobs:
         path: ./build.gradle.kts
   call-kmmbridge-publish:
     uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuildbranches.yml@v0.8
+    
     #- name: Setup Jfrog CLI
      # uses: jfrog/setup-jfrog-cli@v2
       #env:
