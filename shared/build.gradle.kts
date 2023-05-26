@@ -16,7 +16,8 @@ kotlin {
             baseName = "shared"
         }
     }
-    
+}
+
 kmmbridge {
     mavenPublishArtifacts()
     githubReleaseVersions()
@@ -32,3 +33,9 @@ android {
         targetSdk = 31
     }
 }
+
+
+
+
+
+
