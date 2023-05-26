@@ -25,6 +25,7 @@ jobs:
     uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuildbranches.yml@v0.8
     with:
       jvmVersion: 17
+      runs-on: macos-latest
     #- name: Setup Jfrog CLI
      # uses: jfrog/setup-jfrog-cli@v2
       #env:
