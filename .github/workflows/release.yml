@@ -23,7 +23,7 @@ jobs:
         path: ./build.gradle.kts
     - uses: actions/checkout@v2
     - name: call builder yaml
-      uses: ./.github/workflows/faktorybuild.yml
+      uses: ./.github/workflows/action-build
       with:
         jvmVersion: 17
         runs-on: macos-latest
