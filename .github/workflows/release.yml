@@ -21,10 +21,10 @@ jobs:
       uses: andstor/file-reader-action@v1
       with:
         path: ./build.gradle.kts
-    - name: Build XCF Framework
-      id: buildPackage
-      run: ./gradlew spmDevBuild
-    
+  call-kmmbridge-publish:
+    uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuildbranches.yml@v0.8
+    with: 
+      netrcMachine: ltlocaldev.jfrog.io
     #- name: Setup Jfrog CLI
      # uses: jfrog/setup-jfrog-cli@v2
       #env:
