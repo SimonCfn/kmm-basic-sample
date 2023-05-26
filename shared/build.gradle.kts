@@ -1,7 +1,7 @@
 plugins {
     id("org.jetbrains.kotlin.multiplatform") version "1.9.0-Beta"
-    id 'com.android.application' version '7.2.2' apply false
-    id 'com.android.library' version '7.2.2' apply false
+    id("com.android.application") version '7.2.2' apply false
+    id("com.android.library") version '7.2.2' apply false
 }
 
 kotlin {
