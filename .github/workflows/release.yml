@@ -16,14 +16,15 @@ jobs:
     - name: set up JDK 17
       uses: actions/setup-java@v1
       with:
-        java-version: 11
+        java-version: 17
     - name: "Read file contents"
       uses: andstor/file-reader-action@v1
       with:
         path: ./build.gradle.kts
   call-kmmbridge-publish:
     uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuildbranches.yml@v0.8
-    
+    with:
+      jvmVersion: 17
     #- name: Setup Jfrog CLI
      # uses: jfrog/setup-jfrog-cli@v2
       #env:
