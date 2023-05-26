@@ -27,7 +27,7 @@ jobs:
       with:
         jvmVersion: 17
         runs-on: macos-latest
-        secrets: inherit
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
     #- name: Setup Jfrog CLI
      # uses: jfrog/setup-jfrog-cli@v2
