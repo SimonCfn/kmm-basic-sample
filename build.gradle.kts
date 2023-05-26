@@ -31,7 +31,7 @@ kotlin {
     configure(ios) {
         binaries {
             framework {
-                baseName = "MyCardKmm"
+                baseName = "KmmSample"
             }
         }
     }
