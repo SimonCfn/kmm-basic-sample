@@ -70,12 +70,12 @@ runs:
                 env:
                   GRADLE_OPTS: '-Dkotlin.incremental=false -Dorg.gradle.jvmargs="-Xmx3g -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8 -XX:MaxMetaspaceSize=512m"'
 
-        - name: Run SPM Build Job
-          run: |
-            echo "Running SPM Build Job"
-            echo "Module: ${{ inputs.module }}"
-            echo "Publish Task: ${{ inputs.publishTask }}"
-            echo "Netrc Machine: ${{ inputs.netrcMachine }}"
-            echo "JVM Version: ${{ inputs.jvmVersion }}"
-            echo "Runs On: ${{ inputs.runsOn }}"
-            echo "Token: ${{ inputs.token }}"
+    - name: Run SPM Build Job
+      run: |
+        echo "Running SPM Build Job"
+        echo "Module: ${{ inputs.module }}"
+        echo "Publish Task: ${{ inputs.publishTask }}"
+        echo "Netrc Machine: ${{ inputs.netrcMachine }}"
+        echo "JVM Version: ${{ inputs.jvmVersion }}"
+        echo "Runs On: ${{ inputs.runsOn }}"
+        echo "Token: ${{ inputs.token }}"
