@@ -1,4 +1,4 @@
-name: KMM Bridge Github Workflow
+name: build-spm
 on:
   workflow_call:
     inputs:
@@ -25,6 +25,11 @@ on:
         description: 'Host parameter to pass to runs-on'
         default: 'macos-12'
         required: false
+        type: string
+      token:
+        description: access token
+        default: ''
+        required: true
         type: string
     secrets:
       gradle_params:
@@ -55,7 +60,7 @@ jobs:
         with:
           machine: 'maven.pkg.github.com'
           username: 'cirunner'
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ inputs.token }}
 
       - uses: actions/setup-java@v2
         with:
@@ -74,6 +79,6 @@ jobs:
           key: macos-latest-v4-${{ hashFiles('*.gradle.kts') }}
 
       - name: Build Main
-        run: ./gradlew kmmBridgePublish -PENABLE_PUBLISHING=true -PGITHUB_PUBLISH_TOKEN=${{ secrets.GITHUB_TOKEN }} -PGITHUB_REPO=SimonCfn/kmm-basic-sample  --no-daemon --stacktrace
+        run: ./gradlew kmmBridgePublish -PENABLE_PUBLISHING=true -PGITHUB_PUBLISH_TOKEN=${{ inputs.token }} -PGITHUB_REPO=SimonCfn/kmm-basic-sample  --no-daemon --stacktrace
         env:
           GRADLE_OPTS: -Dkotlin.incremental=false -Dorg.gradle.jvmargs="-Xmx3g -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8 -XX:MaxMetaspaceSize=512m"
