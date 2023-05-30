@@ -9,39 +9,10 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  kmmbridgepublish:
-    concurrency: "kmmbridgepublish-SimonCfn/kmm-basic-sample"
-    runs-on: 'macos-latest'
-    steps:
-      - name: Checkout the repo
-        uses: actions/checkout@v3
-
-      - uses: extractions/netrc@v1
-        with:
-          machine: 'maven.pkg.github.com'
-          username: 'cirunner'
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: actions/setup-java@v2
-        with:
-          distribution: "adopt"
-          java-version: 17
-
-      - name: Validate Gradle Wrapper
-        uses: gradle/wrapper-validation-action@v1
-
-      - name: Cache build tooling
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.konan
-          key: ${{ runner.os }}-v4-${{ hashFiles('*.gradle.kts') }}
-
-      - name: call-kmmbridge-publish
-        uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuildbranches.yml@v0.8
-        with: 
-          netrcMachine: touchlabartifactory.jfrog.io
+  call-kmmbridge-publish:
+    uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuildbranches.yml@v0.8
+    with: 
+      netrcMachine: touchlabartifactory.jfrog.io
     #- name: Setup Jfrog CLI
      # uses: jfrog/setup-jfrog-cli@v2
       #env:
