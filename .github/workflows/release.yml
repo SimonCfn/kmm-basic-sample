@@ -38,10 +38,10 @@ jobs:
             ~/.konan
           key: ${{ runner.os }}-v4-${{ hashFiles('*.gradle.kts') }}
 
-      - name: Build Main
-        run: ./gradlew kmmBridgePublish -PENABLE_PUBLISHING=true -PGITHUB_PUBLISH_TOKEN=${{ secrets.GITHUB_TOKEN }} -PGITHUB_REPO=SimonCfn/kmm-basic-sample  --no-daemon --stacktrace
-        env:
-          GRADLE_OPTS: -Dkotlin.incremental=false -Dorg.gradle.jvmargs="-Xmx3g -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8 -XX:MaxMetaspaceSize=512m"
+      - name: call-kmmbridge-publish
+        uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuildbranches.yml@v0.8
+        with: 
+          netrcMachine: touchlabartifactory.jfrog.io
     #- name: Setup Jfrog CLI
      # uses: jfrog/setup-jfrog-cli@v2
       #env:
