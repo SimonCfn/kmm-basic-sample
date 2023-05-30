@@ -2,6 +2,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("co.touchlab.faktory.kmmbridge") version "0.3.7"
+    `maven-publish`
 }
 
 kmmbridge {
@@ -9,6 +10,8 @@ kmmbridge {
     spm()
     frameworkName.set("KmmSample")
 }
+
+addGithubPackagesRepository()
 
 kotlin {
     android()
