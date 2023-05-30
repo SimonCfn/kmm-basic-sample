@@ -6,4 +6,5 @@ pluginManagement {
 }
 rootProject.name = "KmmSample"
 
-implementation(project(":appAndoid/src/main"))
+include(":androidApp")
+include(":shared")
