@@ -10,10 +10,6 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version ("1.8.10")
     // For Android => no version
 
-    /*id("org.jetbrains.kotlin.multiplatform")
-    id("com.android.library")
-    id("org.jetbrains.kotlin.plugin.serialization")*/
-
     id("co.touchlab.faktory.kmmbridge") version "0.3.7"
 }
 
