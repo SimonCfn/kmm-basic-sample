@@ -5,14 +5,6 @@ plugins {
     `maven-publish`
 }
 
-kmmbridge {
-    mavenPublishArtifacts()
-    spm()
-    frameworkName.set("KmmSample")
-}
-
-addGithubPackagesRepository()
-
 kotlin {
     android()
 
@@ -70,6 +62,12 @@ android {
     }
 }
 
+addGithubPackagesRepository()
+kmmbridge {
+    mavenPublishArtifacts()
+    spm()
+    versionPrefix.set("0.8")
+}
 
 
 
