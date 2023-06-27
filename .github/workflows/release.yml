@@ -11,6 +11,11 @@ jobs:
         concurrency: "kmmbridgepublish-${{ github.repository }}"
         runs-on: 'ubuntu-latest'
         steps:
+            - name: checking variables
+              run: |
+                echo ${{ github.repository }}
+                echo ${{github.event.pull_request.title}}
+                echo ${GITHUB_REF#refs/*/}
             - name: Tag creation
               run: |
                 PR_TITLE=${{github.event.pull_request.title}}
