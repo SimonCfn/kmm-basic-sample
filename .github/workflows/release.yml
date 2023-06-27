@@ -1,28 +1,43 @@
+name: github tag creation workflow call
+
 # Trigger on every tag creation
 on:
   push:
     branches:
       - 'master'
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  call-kmmbridge-publish:
-    uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuildbranches.yml@v0.8
-    with: 
-      netrcMachine: touchlabartifactory.jfrog.io
       
-    #- name: Setup Jfrog CLI
-     # uses: jfrog/setup-jfrog-cli@v2
-      #env:
-       # JF_URL: https://ltlocaldev.jfrog.io
-        #JF_USER: scanfin@listen-too.com
-        #JF_PASSWORD: 123Jfrog!
-        
-    #- name: Jfrog CLI commands
-     # run: 
-      #  jf rt u ${PathFilesToUpload} ${JfReposotory}
-        
-  
+jobs:
+    kmmbridgepublish:
+        concurrency: "kmmbridgepublish-${{ github.repository }}"
+        runs-on: 'ubuntu-latest'
+        steps:
+            - name: Tag creation
+              run: |
+                PR_TITLE=${{github.event.pull_request.title}}
+                PR_PREFIX=$(echo $PR_TITLE | cut -d: -f1)
+                VERSION_TAG=${GITHUB_REF#refs/*/}
+                RELEASE=$(echo $VERSION_TAG | cut -d. -f 1)
+                MAJOR=$(echo $VERSION_TAG | cut -d. -f 2)
+                MINOR=$(echo $VERSION_TAG | cut -d. -f 3)
+                if [ $PR_PREFIX == "fix" ]; then
+                    MINOR=$((MINOR+1))
+                    if [$MINOR == "10"]; then 
+                      MINOR = 0
+                      MAJOR=$((MAJOR+1))
+                elif [ $PR_PREFIX == "feat" ]; then
+                    MAJOR=$((MAJOR+1))
+                    if [$MAJOR == "10"]; then 
+                      MAJOR = 0
+                      RELEASE=$((RELEASE+1))
+                else
+                    echo "PR name must start with 'fix:' or 'feat:', now exiting...";
+                    exit 1
+                fi
+                echo "##vso[task.setvariable variable=RELEASE;] >> $RELEASE_VALUE"
+                echo "##vso[task.setvariable variable=MINOR;] >> $MINOR_VALUE"
+                echo "##vso[task.setvariable variable=MAJOR;] >> $MAJOR_VALUE"
+
+            - name: create the git tag
+              run:
+                git tag -a $(RELEASE_VALUE).$(MAJOR_VALUE).$(MINOR_VALUE) -m "Automatic versioning from pipeline"
+                
