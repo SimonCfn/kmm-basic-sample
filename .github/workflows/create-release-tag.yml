@@ -8,7 +8,7 @@ on:
       
 jobs:
     kmmbridgepublish:
-        concurrency: "kmmbridgepublish-${{ github.repository }}"
+        # concurrency: "kmmbridgepublish-${{ github.repository }}"
         runs-on: 'ubuntu-latest'
         steps:
             - name: checking variables
