@@ -1,18 +1,19 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("co.touchlab.faktory.kmmbridge") version "0.3.7"
+    `maven-publish`
 }
 
 kotlin {
     android()
 
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "shared"
+    val ios = listOf(iosX64(), iosArm64(), iosSimulatorArm64())
+    configure(ios) {
+        binaries {
+            framework {
+                baseName = "KmmSample"
+            }
         }
     }
 
@@ -60,3 +61,14 @@ android {
         targetSdk = 31
     }
 }
+
+addGithubPackagesRepository()
+kmmbridge {
+    mavenPublishArtifacts()
+    spm()
+    versionPrefix.set("0.8")
+}
+
+
+
+
