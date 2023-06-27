@@ -1,0 +1,48 @@
+name: github tag creation workflow call
+
+# Trigger on every tag creation
+on:
+  push:
+    branches:
+      - 'patch-1'
+      
+jobs:
+    kmmbridgepublish:
+        concurrency: "kmmbridgepublish-${{ github.repository }}"
+        runs-on: 'ubuntu-latest'
+        steps:
+            - name: checking variables
+              run: |
+                echo ${{ github.repository }}
+                echo ${{github.event.pull_request.title}}
+                echo ${GITHUB_REF#refs/*/}
+            - name: Tag creation
+              run: |
+                PR_TITLE=${{github.event.pull_request.title}}
+                PR_PREFIX=$(echo $PR_TITLE | cut -d: -f1)
+                VERSION_TAG=${GITHUB_REF#refs/*/}
+                RELEASE=$(echo $VERSION_TAG | cut -d. -f 1)
+                MAJOR=$(echo $VERSION_TAG | cut -d. -f 2)
+                MINOR=$(echo $VERSION_TAG | cut -d. -f 3)
+                if [ $PR_PREFIX == "fix" ]; then
+                    MINOR=$((MINOR+1))
+                    if [$MINOR == "10"]; then 
+                      MINOR = 0
+                      MAJOR=$((MAJOR+1))
+                elif [ $PR_PREFIX == "feat" ]; then
+                    MAJOR=$((MAJOR+1))
+                    if [$MAJOR == "10"]; then 
+                      MAJOR = 0
+                      RELEASE=$((RELEASE+1))
+                else
+                    echo "PR name must start with 'fix:' or 'feat:', now exiting...";
+                    exit 1
+                fi
+                echo "##vso[task.setvariable variable=RELEASE;] >> $RELEASE_VALUE"
+                echo "##vso[task.setvariable variable=MINOR;] >> $MINOR_VALUE"
+                echo "##vso[task.setvariable variable=MAJOR;] >> $MAJOR_VALUE"
+
+            - name: create the git tag
+              run:
+                git tag -a $(RELEASE_VALUE).$(MAJOR_VALUE).$(MINOR_VALUE) -m "Automatic versioning from pipeline"
+                
